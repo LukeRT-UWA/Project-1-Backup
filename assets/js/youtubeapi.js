@@ -14,13 +14,13 @@ function loadClient() {
                 function(err) { console.error("Error loading GAPI client for API", err); });
 }
 
-function start(){
-    event.preventDefault();
+//function start(){
+//    event.preventDefault();
+//
+//   mediaoutput.setAttribute("class","displayhidden");
+//}
 
-    mediaoutput.setAttribute("class","displayhidden");
-}
-
-var titleinput = JSON.stringify(specificTitle);
+//var titleinput = JSON.stringify(specificTitle);
 
 function request() {
     return {
@@ -31,9 +31,7 @@ function request() {
     };
 };
 
-//specificTitleEl.addEventListener("click", function getvideo());
-
-function getvideo() {
+specificTitleEl.addEventListener("click", function getvideo() {
     return gapi.client.youtube.search.list(request)
     .then(function (response){
         console.log(response);
@@ -51,9 +49,9 @@ function getvideo() {
         mediaoutput.appendChild(trailer);
         cardContainer.appendChild(mediaoutput);
         
-        mediaoutput.classList.remove("displayhidden");
+        //mediaoutput.classList.remove("displayhidden");
     });
-};
+});
  
-getvideo();
+
 
