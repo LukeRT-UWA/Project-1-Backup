@@ -35,6 +35,8 @@ function search(event) {
         moviePosterEl.src = ("https://image.tmdb.org/t/p/w200/" + moviePoster)
         cardDiv.appendChild(moviePosterEl)
        
+        cont specificTitleOutput = document.getElementById("specific-title");
+        specificTitleOutput.textContent(movieTitle);
       }
       });
     }
