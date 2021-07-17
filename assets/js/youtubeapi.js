@@ -53,7 +53,7 @@ function getvideo() {
         
         mediaoutput.classList.remove("displayhidden");
     });
-});
+};
  
 getvideo();
 
