@@ -45,7 +45,7 @@ function getvideo() {
         
         //mediaoutput.classList.remove("displayhidden");
     });
-});
+};
  
 titlebutton.addEventListener("click",getvideo());
 
