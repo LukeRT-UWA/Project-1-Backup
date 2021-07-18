@@ -83,15 +83,7 @@ function search(event) {
         pseudoTitle.textContent = movieTitle
 
       }
-<<<<<<< HEAD
 
-      
-
-=======
-    
-      }).catch((error) => {
-        alert("hi")
->>>>>>> main
       });
       
     }
