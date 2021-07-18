@@ -1,4 +1,5 @@
-const youtubeAPI = "AIzaSyB51qZZmoDWTnFEW4PUjMr9ZikaTbNMaAY"
+const youtubeAPI = "AIzaSyB51qZZmoDWTnFEW4PUjMr9ZikaTbNMaAY";
+const mediaoutputEL = document.getElementById("videoresult");
 
 function loadClient() {
     gapi.client.setApiKey(youtubeAPI);
@@ -26,9 +27,26 @@ function execute() {
               function(err) { console.error("Execute error", err); });
 }
 
+function results() {
+    const listItems = response.results.items;
+
+    if (listItems) {
+        
+        const videoID = listItems[0].id.videoid;
+        const thumbnail = "https://i.ytimg.com/vi/" + videoID + "/default.jpg";
+        const videoURL = "https://www.youtube.com/watch?v=" + videoID;
+
+        const mediaoutput = document.createElement("video");
+        mediaoutput.setAtrribute("scr",videoURL);
+        mediaoutput.setAtrribute("poster",thumbnail);
+
+        mediaoutputEL.appendChild(mediaoutput);
+    }
+}
+
 window.onload = function() {
     loadClient();
     execute();
     gapi.load("client");
+    results();
 }
-
