@@ -18,7 +18,7 @@
     
   }
 header{
-  height: 30%;
+  height: 35%;
   background-color: var(--darkmode);
   margin-bottom: 30px;
 }
@@ -76,7 +76,7 @@ h2{
 
 .searchBox {
   position: absolute;
-  left: 70%;
+  left: 75%;
   top: 20%;
   transform:  translate(-50%,50%);
   background: #2f3640;
