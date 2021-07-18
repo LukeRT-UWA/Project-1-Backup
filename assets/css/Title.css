@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,900&display=swap');
+
+:root{
+  --deepblue: #303C6C;
+  --lightblue: #d2fdff;
+  --lightyellow: #FBE8A6;
+  --deepyellow: #F4976C;
+  --darkmode: #121212;
+  --lightgrey: #2C2C2EFF;
+}
+
+h1 {
+  position: absolute;
+  left: 50%;
+  top: 8%;
+  transform: translate(-50%, -50%);
+  display: inline;
+  color: var(--deepblue);
+  font-size: 100px;
+  letter-spacing: 8px;
+  cursor: pointer;
+}
+
+
+
+h1::after {
+  content: "Bad Movie Database";
+  position: absolute;
+  color: transparent;
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0,
+    transparent 2px,
+    white 2px,
+    white 4px
+  );
+  -webkit-background-clip: text;
+  top: 0px;
+  left: 0px;
+  transition: 1s;
+}
+
+h1:hover:before {
+  top: 10px;
+  left: 10px;
+}
+
+h1:hover:after {
+  top: -10px;
+  left: -10px;
+} 
+
