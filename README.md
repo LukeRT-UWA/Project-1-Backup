@@ -6,7 +6,7 @@ Screenshot goes here.
 
 ## Movie Database
 
-A movie database app built with Javascript, Jquery, Themoviedatabase Api and youtube API. The app returns some detail from a movie search, including a poster and small synopsis and appends a youtube trailer to the result.
+A movie database app built with Javascript, Jquery, Pure CSS, Themoviedatabase Api and youtube API. The app returns some detail from a movie search, including a poster and small synopsis and appends a youtube trailer to the result.
 
 ## Features
 
