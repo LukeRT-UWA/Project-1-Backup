@@ -63,11 +63,7 @@ function search(event) {
         let movieScoreEl = document.createElement('h2');
         movieScoreEl.textContent = "Movie Score: "+movieScore;
         cardDiv.appendChild(movieScoreEl);
-       
-
-        let moviePosterEl = document.createElement ('img')
-        moviePosterEl.src = ("https://image.tmdb.org/t/p/w200/" + moviePoster)
-        cardDiv.appendChild(moviePosterEl)
+      
 
         const pseudoTitle = document.getElementById("pseudo-title");
         pseudoTitle.textContent = movieTitle
