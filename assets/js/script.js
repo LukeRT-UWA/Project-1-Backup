@@ -16,19 +16,25 @@ $(window).resize(function() {
 
 
 
-
+// .then((response) => response.json());
 
 function fetchAPI(userInput) {
     return fetch("https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&language=en-US&query=" + userInput + "&page=1&include_adult=false")
-    .then((response) => response.json())
-    // .then(function (response) { })
+    .then((response) => { if (response.ok) { return response.json()}
+    else { openModal()}
+    })
+    
+    
+    // .catch((error) => {
+    //   alert("hi") })
+    
 }
 
 function search(event) {
   event.preventDefault();
   var userInput = document.getElementById('search-input').value;
   cardContainer.innerHTML= ""
- 
+  
 
   fetchAPI(userInput)
       .then((data) => {
@@ -69,8 +75,10 @@ function search(event) {
         pseudoTitle.textContent = movieTitle
 
       }
+
+      
+
       });
     }
 
 document.getElementById('search-form').addEventListener("submit", search);
-
