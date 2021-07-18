@@ -2,11 +2,20 @@
 
 visit page @ https://lukert-uwa.github.io/Project-1-Backup/
 
-Welcome to "It doesn't really matter"
+Screenshot goes here.
 
-Your go to website for all the best blockbusters and attention grabbers.
+## Movie Database
 
-We have a curated list of film that will keep your eyes glued to the screen.
+A movie database app built with Javascript, Jquery, Pure CSS, Themoviedatabase Api and youtube API. The app returns some detail from a movie search, including a poster and small synopsis and appends a youtube trailer to the result.
 
-Please naviage by suppling a Movie title and we will generate an output of the best of the best.
+## Features
+
+- Search bar that allows entering movie title.
+- Movie cards displaying various information.
+- Movie title, movie poster, movie synopsis and movie score displayed inside movie card.
+- Youtube video appended to movie card.
+
+## To-dos
+
+Need to ensure that local storage is used to save previous searches.
 
