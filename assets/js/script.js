@@ -1,21 +1,6 @@
 var apiKey = "b38fe3f237a509f2859b965513f8c249"
 let cardContainer = document.getElementById('card-container')
 
-function parallax_height() {
-  var scroll_top = $(this).scrollTop();
-  var header_height = $(".main-header-section").outerHeight();
-  $(".main-header").css({ height: header_height - scroll_top });
-}
-parallax_height();
-$(window).scroll(function() {
-  parallax_height();
-});
-$(window).resize(function() {
-  parallax_height();
-});
-
-
-
 
 
 function fetchAPI(userInput) {
@@ -41,7 +26,7 @@ function search(event) {
         let moviePoster = movieResults.poster_path
         let movieReleaseDate = movieResults.release_date
         let movieOverview = movieResults.overview
-        let movieScore = movieResults.popularity
+        let movieScore = movieResults.vote_average
 
         let cardDiv = document.createElement("div")
         cardDiv.setAttribute("class", "pure-u-1-5 movie-card card")
@@ -51,10 +36,18 @@ function search(event) {
         movieTitleEl.textContent = movieTitle
         cardDiv.appendChild(movieTitleEl)
 
-        
-        let moviePosterEl = document.createElement ('img');
-        moviePosterEl.src = ("https://image.tmdb.org/t/p/w200/" + moviePoster);
-        cardDiv.appendChild(moviePosterEl);
+        if(moviePoster !== null){
+          let moviePosterEl = document.createElement ('img');
+          moviePosterEl.src = ("https://image.tmdb.org/t/p/w200/" + moviePoster);
+          cardDiv.appendChild(moviePosterEl);
+        }
+        else{
+          let moviePosterEl = document.createElement ('img');
+          moviePosterEl.src = ("https://via.placeholder.com/150");
+          cardDiv.appendChild(moviePosterEl);
+        }
+
+
         
         let movieOverviewEl = document.createElement('p');
         movieOverviewEl.textContent = movieOverview;
@@ -63,17 +56,16 @@ function search(event) {
         let movieScoreEl = document.createElement('h2');
         movieScoreEl.textContent = "Movie Score: "+movieScore;
         cardDiv.appendChild(movieScoreEl);
-       
-
-        let moviePosterEl = document.createElement ('img')
-        moviePosterEl.src = ("https://image.tmdb.org/t/p/w200/" + moviePoster)
-        cardDiv.appendChild(moviePosterEl)
 
         const pseudoTitle = document.getElementById("pseudo-title");
         pseudoTitle.textContent = movieTitle
 
       }
+    
+      }).catch((error) => {
+        alert("hi")
       });
+      
     }
 
 document.getElementById('search-form').addEventListener("submit", search);
