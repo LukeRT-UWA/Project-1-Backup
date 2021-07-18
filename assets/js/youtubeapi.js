@@ -15,8 +15,8 @@ function loadClient() {
 }
 
 const searchbutton = document.getElementById('search-button');
-const videoList = document.getElementById('videoListContainer');
-const MovieTitle = "Moana Official Trailer"
+const movieTitleinput = fetchApi(userInput);
+movieTitle = movieTitle[i].title;
 var pageToken = '';
 
 searchbutton.addEventListener('click', e => {
@@ -31,15 +31,17 @@ function paginate(e, obj) {
 }
 
 // Make sure the client is loaded before calling this method.
-function execute() {
+function execute(movieTitle) {
+
+    const querystring = movieTitleinput + "Trailer"
 
     var arr_search = {
         "part": 'snippet',
         "type": 'video',
         "order": "viewCount",
         "maxResults": 1,
-        "q": "moana",
-        "videoEmbeddable": "true",
+        "q": querystring,
+        "videoEmbeddable": true,
     };
   
     if (pageToken != '') {
@@ -52,11 +54,14 @@ function execute() {
         console.log("response",response);
 
         let videoID = response.result.items[0].id.videoId;
+        console.log(videoID)
+        let youtubeLink = `https://www.youtube.com/watch?v=${videoID}`
+        console.log(youtubeLink)
         
         let mediaEl = document.createElement("iframe");
-        mediaEl.setAttribute("src","https://www.youtube.com/embed/" + videoID);
+        mediaEl.setAttribute("src", youtubeLink);
         
-        videoList.appendChild(mediaEl)
+        movieBriefInfoEl.appendChild(mediaEl)
     },
     function(err) { console.error("Execute error", err); });
 }
