@@ -16,6 +16,8 @@ function search(event) {
   fetchAPI(userInput)
       .then((data) => {
         
+        let movieTitleYT = document.getElementById("pseudo-title");
+
         const movieData = data;
         for (let index = 0; index < movieData.results.length; index++) {
           const movieResults = movieData.results[index];
@@ -25,21 +27,22 @@ function search(event) {
         let movieReleaseDate = movieResults.release_date
         let movieOverview = movieResults.overview
         let movieScore = movieResults.vote_average
+        
         let cardDiv = document.createElement("div")
         cardDiv.setAttribute("class", "pure-u-1-5 movie-card")
         cardContainer.appendChild(cardDiv)
+
         let movieTitleEl = document.createElement('h1')
         movieTitleEl.textContent = movieTitle
         cardDiv.appendChild(movieTitleEl)
+
+        movieTitleYT.textContent = movieTitle
+
         let moviePosterEl = document.createElement ('img')
         moviePosterEl.src = ("https://image.tmdb.org/t/p/w200/" + moviePoster)
         cardDiv.appendChild(moviePosterEl)
-
-        const pseudoTitle = document.getElementById("pseudo-title");
-        pseudoTitle.textContent = movieTitle
       }
       });
     }
 
 document.getElementById('search-form').addEventListener("submit", search);
-
