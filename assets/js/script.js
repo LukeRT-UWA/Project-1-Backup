@@ -18,6 +18,7 @@ $(window).resize(function() {
 
 // .then((response) => response.json());
 
+
 function fetchAPI(userInput) {
     return fetch("https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&language=en-US&query=" + userInput + "&page=1&include_adult=false")
     .then((response) => { if (response.ok) { return response.json()}
@@ -47,7 +48,7 @@ function search(event) {
         let moviePoster = movieResults.poster_path
         let movieReleaseDate = movieResults.release_date
         let movieOverview = movieResults.overview
-        let movieScore = movieResults.popularity
+        let movieScore = movieResults.vote_average
 
         let cardDiv = document.createElement("div")
         cardDiv.setAttribute("class", "pure-u-1-5 movie-card card")
@@ -57,10 +58,18 @@ function search(event) {
         movieTitleEl.textContent = movieTitle
         cardDiv.appendChild(movieTitleEl)
 
-        
-        let moviePosterEl = document.createElement ('img');
-        moviePosterEl.src = ("https://image.tmdb.org/t/p/w200/" + moviePoster);
-        cardDiv.appendChild(moviePosterEl);
+        if(moviePoster !== null){
+          let moviePosterEl = document.createElement ('img');
+          moviePosterEl.src = ("https://image.tmdb.org/t/p/w200/" + moviePoster);
+          cardDiv.appendChild(moviePosterEl);
+        }
+        else{
+          let moviePosterEl = document.createElement ('img');
+          moviePosterEl.src = ("https://via.placeholder.com/150");
+          cardDiv.appendChild(moviePosterEl);
+        }
+
+
         
         let movieOverviewEl = document.createElement('p');
         movieOverviewEl.textContent = movieOverview;
@@ -69,16 +78,22 @@ function search(event) {
         let movieScoreEl = document.createElement('h2');
         movieScoreEl.textContent = "Movie Score: "+movieScore;
         cardDiv.appendChild(movieScoreEl);
-      
 
         const pseudoTitle = document.getElementById("pseudo-title");
         pseudoTitle.textContent = movieTitle
 
       }
+<<<<<<< HEAD
 
       
 
+=======
+    
+      }).catch((error) => {
+        alert("hi")
+>>>>>>> main
       });
+      
     }
 
 document.getElementById('search-form').addEventListener("submit", search);
