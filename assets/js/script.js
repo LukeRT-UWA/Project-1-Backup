@@ -2,17 +2,41 @@ var apiKey = "b38fe3f237a509f2859b965513f8c249"
 let cardContainer = document.getElementById('card-container')
 let singlecardContainer = document.getElementById('singe-card-container')
 
+function parallax_height() {
+  var scroll_top = $(this).scrollTop();
+  var header_height = $(".main-header-section").outerHeight();
+  $(".main-header").css({ height: header_height - scroll_top });
+}
+parallax_height();
+$(window).scroll(function() {
+  parallax_height();
+});
+$(window).resize(function() {
+  parallax_height();
+});
+
+
+
+// .then((response) => response.json());
+
+
 function fetchAPI(userInput) {
     return fetch("https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&language=en-US&query=" + userInput + "&page=1&include_adult=false")
-    .then((response) => response.json())
-    // .then(function (response) { })
+    .then((response) => { if (response.ok) { return response.json()}
+    else { openModal()}
+    })
+    
+    
+    // .catch((error) => {
+    //   alert("hi") })
+    
 }
 
 function search(event) {
   event.preventDefault();
   var userInput = document.getElementById('search-input').value;
   cardContainer.innerHTML= ""
- 
+
   fetchAPI(userInput)
       .then((data) => {
 
@@ -25,6 +49,7 @@ function search(event) {
         let movieReleaseDate = movieResults.release_date
         let movieOverview = movieResults.overview
         let movieScore = movieResults.vote_average
+
         
         manycard(moviePoster,movieTitle,movieReleaseDate,movieScore);
       }
@@ -88,7 +113,3 @@ function onecard (moviePoster,movieTitle,movieReleaseDate,movieScore,movieOvervi
 }
 
 document.getElementById('search-form').addEventListener("submit", search);
-
-
-//const movieTitle = fetchAPI()
-//movieTitle = movieTitle[0].title;

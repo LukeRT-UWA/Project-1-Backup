@@ -1,3 +1,15 @@
+:root{
+  --deepblue: #303C6C;
+  --lightblue: #d2fdff;
+  --lightyellow: #FBE8A6;
+  --deepyellow: #F4976C;
+  --darkmode: #121212;
+  --lightgrey: #2C2C2EFF;
+}
+
+
+
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,20 +17,129 @@
     font-family: 'Roboto', sans-serif;
     
   }
+header{
+  height: 35%;
+  background-color: var(--darkmode);
+  margin-bottom: 30px;
+}
+body {
 
-  .movie-card {
+  background-color: var(--lightgrey);
+
+}
+
+p{
+  margin-top: 20px;
+  color: white;
+}
+img {
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px #8E8E93FF;
+}
+h2{
+  font-family: 'Playfair Display', serif;
+  color: white;
+  font-size: 200%;
+  
+}
 
 
-    border: 2px solid black;
-    width: 500px;
-    height: 500px;
-    margin: 20px;
-    padding: 20px;
-    border-radius: 25px;
-  }
 
-  body {
+.card {
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  
+}
+.movie-card {
+  text-align: center;
+  background-color: #1C1C1EFF;
+  border: 1px solid #8E8E93FF;
+  width: 500px;
+  height: auto;
+  margin: 20px;
+  margin-left: 80px;
+  padding: 20px;
+  border-radius: 25px;
+}
 
-    background-color: lightblue;
 
-  }
+
+
+
+
+#TITLE{
+  border-bottom: solid var(--deepblue);
+}
+
+.searchBox {
+  position: absolute;
+  left: 75%;
+  top: 20%;
+  transform:  translate(-50%,50%);
+  background: #2f3640;
+  height: 60px;
+  border-radius: 40px;
+  padding: 10px;
+
+}
+
+.searchBox:hover > .searchInput {
+  width: 240px;
+  padding: 0 6px;
+}
+
+.searchBox:hover > .searchButton {
+background: white;
+color : #2f3640;
+}
+
+.searchButton {
+  color: white;
+  float: right;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #2f3640;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+
+.searchInput {
+  border:none;
+  background: none;
+  outline:none;
+  float:left;
+  padding: 0;
+  color: white;
+  font-size: 16px;
+  transition: 0.4s;
+  line-height: 40px;
+  width: 0px;
+
+}
+
+
+.modal-text {
+
+  color:black;
+
+}
+
+
+
+
+
+@media screen and (max-width: 620px) {
+.searchBox:hover > .searchInput {
+  width: 150px;
+  padding: 0 6px;
+}
+}
+
+
+
