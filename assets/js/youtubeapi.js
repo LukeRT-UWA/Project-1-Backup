@@ -1,5 +1,12 @@
 gapi.load("client", loadClient);
-  
+
+function init() {
+    gapi.client.setApiKey("YOUR_PUBLIC_KEY");
+    gapi.client.load("youtube", "v3", function() {
+        // yt api is ready
+    });
+}
+
 function loadClient() {
     gapi.client.setApiKey("AIzaSyB51qZZmoDWTnFEW4PUjMr9ZikaTbNMaAY");
     return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
@@ -8,10 +15,10 @@ function loadClient() {
 }
 
 const searchbutton = document.getElementById('search-button');
-const keywordInput = document.getElementById('keyword-input');
-const videoList = document.getElementById('videoListContainer');
+const movieTitleinput = fetchApi(userInput);
+movieTitle = movieTitle[i].title;
 var pageToken = '';
-  
+
 searchbutton.addEventListener('click', e => {
     e.preventDefault();
     execute();
@@ -22,17 +29,19 @@ function paginate(e, obj) {
     pageToken = obj.getAttribute('data-id');
     execute();
 }
-  
+
 // Make sure the client is loaded before calling this method.
-function execute() {
-    const searchString = keywordInput.value;
-  
+function execute(movieTitle) {
+
+    const querystring = movieTitleinput + "Trailer"
+
     var arr_search = {
         "part": 'snippet',
         "type": 'video',
         "order": "viewCount",
         "maxResults": 1,
-        "q": searchString
+        "q": querystring,
+        "videoEmbeddable": true,
     };
   
     if (pageToken != '') {
@@ -42,30 +51,19 @@ function execute() {
     return gapi.client.youtube.search.list(arr_search)
     .then(function(response) {
         // Handle the results here (response.result has the parsed body).
-        const listItems = response.result.items;
-        if (listItems) {
-            let output = '<h4>Videos</h4><ul>';
-  
-            listItems.forEach(item => {
-                const videoId = item.id.videoId;
-                const videoTitle = item.snippet.title;
-                output += `
-                    <li><a data-fancybox href="https://www.youtube.com/watch?v=${videoId}"><img src="http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg" /></a><p>${videoTitle}</p></li>
-                `;
-            });
-            output += '</ul>';
-  
-            if (response.result.prevPageToken) {
-                output += `<br><a class="paginate" href="#" data-id="${response.result.prevPageToken}" onclick="paginate(event, this)">Prev</a>`;
-            }
-  
-            if (response.result.nextPageToken) {
-                output += `<a href="#" class="paginate" data-id="${response.result.nextPageToken}" onclick="paginate(event, this)">Next</a>`;
-            }
-  
-            // Output list
-            videoList.innerHTML = output;
-        }
+        console.log("response",response);
+
+        let videoID = response.result.items[0].id.videoId;
+        console.log(videoID)
+        let youtubeLink = `https://www.youtube.com/watch?v=${videoID}`
+        console.log(youtubeLink)
+        
+        let mediaEl = document.createElement("iframe");
+        mediaEl.setAttribute("src", youtubeLink);
+        
+        movieBriefInfoEl.appendChild(mediaEl)
     },
     function(err) { console.error("Execute error", err); });
 }
+
+
