@@ -1,5 +1,6 @@
 var apiKey = "b38fe3f237a509f2859b965513f8c249"
 let cardContainer = document.getElementById('card-container')
+let historydiv = document.getElementById("History")
 
 function parallax_height() {
   var scroll_top = $(this).scrollTop();
@@ -34,6 +35,7 @@ function fetchAPI(userInput) {
 function search(event) {
   event.preventDefault();
   var userInput = document.getElementById('search-input').value;
+  localStorage.setItem(userInput, userInput)
   cardContainer.innerHTML= ""
   
 
@@ -87,5 +89,19 @@ function search(event) {
       });
       
     }
-
+function history(){
+  console.log("HISTORY WORKS");
+  for (var i = 0; i < localStorage.length; i++){
+      console.log("HISTORY Create");
+      
+      button = document.createElement('button');
+      button.setAttribute("type", "button"); 
+      button.classList.add("btn", "pure-button", "pure-button-primary");
+      button.textContent = localStorage.getItem(localStorage.key(i));
+      button.style.float = "left";
+      button.id = localStorage.getItem(localStorage.key(i));
+      historydiv.append(button);
+      
+  }};
 document.getElementById('search-form').addEventListener("submit", search);
+history()
