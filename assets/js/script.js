@@ -82,7 +82,7 @@ function search(event) {
         cardDiv.appendChild(movieScoreEl);
 
         const pseudoTitle = document.getElementById("pseudo-title");
-        pseudoTitle.textContent = movieTitle
+
 
       }
 
